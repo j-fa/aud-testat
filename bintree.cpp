@@ -42,9 +42,20 @@ int BTree::nNodes() const
 
 // Zugeh�rige rekursive private Methode
 int BTree::nNodesR(const PKnoten pk) const
-{
+{	
 	// TO DO
-	return 0;
+	int n = 1;
+
+	if(pk->l_)
+	{
+		n += nNodesR(pk->l_);
+	}
+	if(pk->r_)
+	{
+		n += nNodesR(pk->r_);
+	}	
+
+	return n;
 }
 
 // _____________________________________________________
