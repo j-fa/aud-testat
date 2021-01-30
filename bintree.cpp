@@ -23,6 +23,10 @@ bool BTree::remove(const string & key)
 // WICHTIG: Referenzargument!!!
 bool BTree::removeR(PKnoten &pk, const string & key)
 {
+	if(!pk)
+	{
+		return false;
+	}
 	// TO DO
 	return true;
 }
