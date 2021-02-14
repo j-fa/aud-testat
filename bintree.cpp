@@ -19,6 +19,64 @@ bool BTree::remove(const string & key)
 	return res;
 }
 
+void removeNode(PKnoten &pk)
+{
+	if(pk->count_ > 1)
+	{
+		// Es existiert mehr als ein Knoten mit gesuchtem Schluessel
+		pk->count_--;
+	}
+	else
+	{
+		if(pk->l_)
+		{
+			// Linker Teilbaum existiert
+			if(pk->l_->r_)
+			{
+				PKnoten maxNode;
+				PKnoten parentMaxNode;
+				// Mind. ein groesserer Knoten existiert
+				maxNode = pk->l_->r_;
+				parentMaxNode = pk->l_;
+				while(maxNode->r_)
+				{
+					parentMaxNode = maxNode;
+					maxNode = maxNode->r_;
+				}
+				parentMaxNode->r_ = maxNode->l_;
+				pk->key_ = maxNode->key_;
+				pk->count_ = maxNode->count_;
+				delete maxNode;
+				maxNode = nullptr;
+			}
+			else
+			{
+				// Max. Knoten gefunden
+				pk->key_ = pk->l_->key_;
+				pk->count_ = pk->l_->count_;
+				PKnoten toDelete = pk->l_;
+				pk->l_ = pk->l_->l_;
+				delete toDelete;
+			}
+		}
+		else
+		{
+			// Linker Teilbaum existiert nicht
+			if(pk->r_)
+			{
+				PKnoten toDelete = pk;
+				pk = pk->r_;
+				delete toDelete;
+			}
+			else
+			{
+				delete pk;
+				pk = nullptr;
+			}				
+		}
+	}
+}
+
 // Zugeh�rige rekursive private Methode
 // WICHTIG: Referenzargument!!!
 bool BTree::removeR(PKnoten &pk, const string & key)
@@ -46,65 +104,11 @@ bool BTree::removeR(PKnoten &pk, const string & key)
 	else
 	{
 		// Knoten gefunden
-		if(pk->count_ > 1)
-		{
-			// Es existiert mehr als ein Knoten mit gesuchtem Schluessel
-			pk->count_--;
-		}
-		else
-		{
-			if(pk->l_)
-			{
-				// Linker Teilbaum existiert
-				if(pk->l_->r_)
-				{
-					PKnoten maxNode;
-					PKnoten parentMaxNode;
-					// Mind. ein groesserer Knoten existiert
-					maxNode = pk->l_->r_;
-					parentMaxNode = pk->l_;
-					while(maxNode->r_)
-					{
-						parentMaxNode = maxNode;
-						maxNode = maxNode->r_;
-					}
-					parentMaxNode->r_ = maxNode->l_;
-					pk->key_ = maxNode->key_;
-					pk->count_ = maxNode->count_;
-					delete maxNode;
-					maxNode = nullptr;
-				}
-				else
-				{
-					// Max. Knoten gefunden
-					pk->key_ = pk->l_->key_;
-					pk->count_ = pk->l_->count_;
-					PKnoten toDelete = pk->l_;
-					pk->l_ = pk->l_->l_;
-					delete toDelete;
-				}
-			}
-			else
-			{
-				// Linker Teilbaum existiert nicht
-				if(pk->r_)
-				{
-					PKnoten toDelete = pk;
-					pk = pk->r_;
-					delete toDelete;
-				}
-				else
-				{
-					delete pk;
-					pk = nullptr;
-				}				
-			}
-		}
+		removeNode(pk);
 	}
 	
 	return true;
 }
-
 
 // ____________ ANZAHL DER KNOTEN______________________
 
