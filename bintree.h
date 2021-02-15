@@ -3,8 +3,8 @@
 
 // 2. praktische Aufgabe Klasse BTree
 // Info 3, J. Willms, 2009
-// Diese  Definitiondatei nicht ändern!
-// Es darf nur die Datei bintree2.cpp geändert werden!
+// Diese  Definitiondatei nicht ï¿½ndern!
+// Es darf nur die Datei bintree2.cpp geï¿½ndert werden!
 
 #include <string> 
 
@@ -13,8 +13,8 @@
 // Die Klasse ObjCount2 dient nur zu Debug-Zwecken
 // In einer statischen Klassenvariable wird festgehalten, 
 // wie viele aktuelle Objekte (Instanzen) der Klasse ObjCount2
-// erzeugt, aber noch nicht gelöscht wurden
-// SIEHE Studienbuch Informatik 3: Übungsaufgabe 3.3
+// erzeugt, aber noch nicht gelï¿½scht wurden
+// SIEHE Studienbuch Informatik 3: ï¿½bungsaufgabe 3.3
 
 class ObjCount2
 {
@@ -28,24 +28,24 @@ private:
 
 
 // ****************************************************************************************
-// Die Klasse Knoten wird im binären Suchbaum benutzt
-// Um Speicherlecks aufzuspüren, wird zu Debug-Zwecken hat die Klasse
+// Die Klasse Knoten wird im binï¿½ren Suchbaum benutzt
+// Um Speicherlecks aufzuspï¿½ren, wird zu Debug-Zwecken hat die Klasse
 // Knoten die Basisklasse ObjCount2
 
 class Knoten : public ObjCount2 {
 public:
 	Knoten(const std::string & schluessel);
-	std::string key_;          // Schlüssel  
+	std::string key_;          // Schlï¿½ssel  
 	Knoten *l_;      // linker Nachfolger
 	Knoten *r_;		 // rechter Nachfolger 
-	int count_;      // Elementzähler
+	int count_;      // Elementzï¿½hler
 };
 
 typedef Knoten * PKnoten;
 
 
 // ****************************************************************************************
-// Binärer Suchbaum mit Elementzähler
+// Binï¿½rer Suchbaum mit Elementzï¿½hler
 // (Unterschieden wird zwischen Knoten und Elementen)
 
 class BTree
@@ -53,15 +53,16 @@ class BTree
 public:
 	BTree();
 	~BTree();
-	void insert(const std::string & key);   // Einfügen eines Elements mit dem Schlüssel key
-	bool remove(const std::string & key);   // Löschen eines Elements mit dem Schlüssel key
+	void insert(const std::string & key);   // Einfï¿½gen eines Elements mit dem Schlï¿½ssel key
+	bool remove(const std::string & key);   // Lï¿½schen eines Elements mit dem Schlï¿½ssel key
 	void printInorder() const;  // Inorder-Ausgabe des gesamten Baums  
 	void printPreorder() const; // Preorder-Ausgabe des gesamten Baums  
-	int size() const;   // Gibt die Anzahl der Elemente des Baums zurück
-	int nNodes() const; // Gibt die Anzahl der Knoten des Baums zurück
-	int depth() const;  // Gibt die Tiefe des Baums zurück 
-	int count(const std::string & key) const; // Gibt die Anzahl der eingefügten   
-	// Elemente des Schlüssels key zurück
+	void printStructure() const;
+	int size() const;   // Gibt die Anzahl der Elemente des Baums zurï¿½ck
+	int nNodes() const; // Gibt die Anzahl der Knoten des Baums zurï¿½ck
+	int depth() const;  // Gibt die Tiefe des Baums zurï¿½ck 
+	int count(const std::string & key) const; // Gibt die Anzahl der eingefï¿½gten   
+	// Elemente des Schlï¿½ssels key zurï¿½ck
 
 
 private:
@@ -71,6 +72,7 @@ private:
 	void deleteNodeR(PKnoten pk);
 	void inorderR(const PKnoten pk) const;
 	void preorderR(const PKnoten pk) const;
+	void printStructureR(const PKnoten pk) const;
 	void insertR(PKnoten & pk, const std::string & key);
 	int depthR(const PKnoten pk) const;
 	int countR(const PKnoten pk, const std::string & key) const;

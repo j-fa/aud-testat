@@ -1,24 +1,24 @@
 // 2. praktische Aufgabe,  Klasse BTree
 // Info 3, J. Willms, 2011
 
-// Enthält die main()-Funktion
+// Enthï¿½lt die main()-Funktion
 
 // Weitere Tests der Klasse BTree
 
-// Der Quelltext der Klasse BTree ist noch unvollständig!
+// Der Quelltext der Klasse BTree ist noch unvollstï¿½ndig!
 // Die Methoden nNodes() und remove() sollen in der bintree2.cpp
 // implementiert werden
-// Es soll lediglich die Datei bintree2.cpp geändert werden!
+// Es soll lediglich die Datei bintree2.cpp geï¿½ndert werden!
 // _____________________________________________________________
 
 //#include "stdafx.h"
 #include <iostream>
 #include <string>
-#include <cassert>  // Wenn NDEBUG definiert ist, wird assert nicht ausgeführt!
+#include <cassert>  // Wenn NDEBUG definiert ist, wird assert nicht ausgefï¿½hrt!
 #include "bintree.h"
 
 #ifdef _WIN32
-#include <windows.h>    // notwendig für SetConsoleOutputCP(1252), siehe unten
+#include <windows.h>    // notwendig fï¿½r SetConsoleOutputCP(1252), siehe unten
 #endif
 
 
@@ -27,33 +27,34 @@ using namespace std;
 
 // =========== Globale Hilfsfunktionen ===========================
 
-// Gibt die Anzahl der Knoten des übergebenen Baums mit dem Schlüssel key aus
+// Gibt die Anzahl der Knoten des ï¿½bergebenen Baums mit dem Schlï¿½ssel key aus
 static void anzahlAusgeben(const BTree & tree, const string & key)
 {
-	cout << "Anzahl der Elemente mit Schlüssel " << key
+	cout << "Anzahl der Elemente mit Schlï¿½ssel " << key
 		<< ": " << tree.count(key) << endl;
 
 }
 
-// Gibt den übergebenen Baum aus (zuerst inorder, dann preorder)
+// Gibt den ï¿½bergebenen Baum aus (zuerst inorder, dann preorder)
 static void baumAusgeben(const BTree & btree, const string &outStr)
 {
 	cout << outStr << endl;
-	cout << ">>>>>>>>>>>  INORDER:" << endl;
-	btree.printInorder();
-	cout << "-----------  PREORDER:" << endl;
-	btree.printPreorder();
-	cout << "<<<<<<<<<<<<<<<<<<<<<" << endl;
+	// cout << ">>>>>>>>>>>  INORDER:" << endl;
+	// btree.printInorder();
+	// cout << "-----------  PREORDER:" << endl;
+	// btree.printPreorder();
+	// cout << "<<<<<<<<<<<<<<<<<<<<<" << endl;
+	btree.printStructure();
 }
 
 // Gibt die Anzahl der Elemente, Tiefe und die
 // Anzahl der Knoten aus.
-// Prüft in der DEBUG-Version die Anzahl der allokierten Knoten
+// Prï¿½ft in der DEBUG-Version die Anzahl der allokierten Knoten
 // und vergleicht Sie mit der Anzahl der Knoten im Baum
 //
 // PRECONDITION:
 //                Es darf nur ein Objekt der Klasse BTree geben und
-//                Objekte der Klasse Knoten dürfen nur von der
+//                Objekte der Klasse Knoten dï¿½rfen nur von der
 //                Klasse BTree erzeugt werden!
 //
 static void ausgabeAnzahl(const BTree &btree)
@@ -65,23 +66,23 @@ static void ausgabeAnzahl(const BTree &btree)
 	{
 		cout << "Anzahl der momentan existierenden Objekte der Klasse Knoten: "
 			<< Knoten::getNumberOfObjects() << endl;
-		cout << "Rückgabewert von BTree::nNodes(): " << btree.nNodes() << endl;
+		cout << "Rï¿½ckgabewert von BTree::nNodes(): " << btree.nNodes() << endl;
 
-		cout << "#### FOLGE-FEHLER:" << " Keine Übereinstimmung!" << endl << endl;
+		cout << "#### FOLGE-FEHLER:" << " Keine ï¿½bereinstimmung!" << endl << endl;
 		assert(false);
 	}
 }
 
 
 
-//  Löscht ein Element mit dem Schlüssel key und zusätzlich die Anzahl
+//  Lï¿½scht ein Element mit dem Schlï¿½ssel key und zusï¿½tzlich die Anzahl
 //  der Elemente, Tiefe und die Anzahl der Knoten
 //  Falls ein solches Element nicht vorhanden,
 //  wird nur eine Warnung ausgegeben
 static void loesche(BTree &btree, const string &key)
 {
 	if (btree.remove(key)){
-		cout << "Element mit Schlüssel " << key << " gelöscht" << endl;
+		cout << "Element mit Schlï¿½ssel " << key << " gelï¿½scht" << endl;
 		ausgabeAnzahl(btree);
 	}
 	else {
@@ -99,7 +100,7 @@ int main()
 #ifdef _WIN32
 	SetConsoleOutputCP(1252);     // Setzt unter Windows den ANSI-Zeichensatz auch in der
 #endif                           // Konsole, falls unter Eigenschaften /Schriftart:
-	// True-Type-Schriftart ausgewählt wurde
+	// True-Type-Schriftart ausgewï¿½hlt wurde
 
 
 	cout << "##########  TEIL 1 #########################" << endl;
@@ -121,7 +122,7 @@ int main()
 	b.insert("gif");
 	b.insert("odbc");
 
-	baumAusgeben(b, "Nach dem Einfügen des Knoten \"odbc\":");
+	baumAusgeben(b, "Nach dem Einfï¿½gen des Knoten \"odbc\":");
 	ausgabeAnzahl(b);
 
 	anzahlAusgeben(b, "pop3");
@@ -142,10 +143,10 @@ int main()
 	ausgabeAnzahl(b);
 
 	loesche(b, "nat");
-	baumAusgeben(b, "Nach dem Löschen des Knoten \"nat\":");
+	baumAusgeben(b, "Nach dem Lï¿½schen des Knoten \"nat\":");
 
 	loesche(b, "mpeg");
-	baumAusgeben(b, "Nach dem Löschen des Knoten \"mpeg\":");
+	baumAusgeben(b, "Nach dem Lï¿½schen des Knoten \"mpeg\":");
 
 	b.insert("kom");
 	b.insert("leo");
@@ -165,22 +166,22 @@ int main()
 	b.insert("pkr");
 	b.insert("mac");
 
-	baumAusgeben(b, "Vor dem Löschen des Knoten \"odbc\":");
+	baumAusgeben(b, "Vor dem Lï¿½schen des Knoten \"odbc\":");
 	ausgabeAnzahl(b);
 
 	loesche(b, "odbc");
-	baumAusgeben(b, "Vor dem Löschen des Knoten \"php\":");
+	baumAusgeben(b, "Vor dem Lï¿½schen des Knoten \"php\":");
 	loesche(b, "php");
-	baumAusgeben(b, "Nachdem Löschen des Knoten \"php\":");
+	baumAusgeben(b, "Nachdem Lï¿½schen des Knoten \"php\":");
 
 	cout << endl << endl
 		<< "#################  TEIL 3 ###################################" << endl;
 	loesche(b, "mathematik");
 	loesche(b, "kom");
-	baumAusgeben(b, "Nachdem Löschen des Knoten \"kom\":");
+	baumAusgeben(b, "Nachdem Lï¿½schen des Knoten \"kom\":");
 
 	loesche(b, "html");
-	baumAusgeben(b, "Nachdem Löschen des Knoten \"html\":");
+	baumAusgeben(b, "Nachdem Lï¿½schen des Knoten \"html\":");
 
 	return 0;
 }

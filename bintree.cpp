@@ -251,6 +251,28 @@ void BTree::preorderR(const PKnoten pk) const  // rekursiv
 	}
 }
 
+void BTree::printStructure() const
+{
+	printStructureR(root_);
+}
+
+void BTree::printStructureR(const PKnoten pk) const
+{
+	if(pk)
+	{
+		cout << pk->key_ << " (" << pk->count_ << ") -L-> ";
+		printStructureR(pk->l_);
+		cout << pk->key_ << " (" << pk->count_ << "), -R-> ";
+		printStructureR(pk->r_);
+	}
+	else
+	{
+		cout << "%" << endl;
+	}
+}
+
+
+
 
 
 // ____________ TIEFE ______________________
