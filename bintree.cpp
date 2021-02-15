@@ -47,7 +47,6 @@ void removeNode(PKnoten &pk)
 				pk->key_ = maxNode->key_;
 				pk->count_ = maxNode->count_;
 				delete maxNode;
-				maxNode = nullptr;
 			}
 			else
 			{
